@@ -7,7 +7,35 @@ public class PlayerCollision : MonoBehaviour
     public int nbCoins = 0;
     public GameObject pickupEffect;
     public GameObject mobEffect;
-    private bool canInstantiate;
+    private bool canInstantiate = true;
+    public GameObject camera1;
+    public GameObject camera2;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Camera1")
+        {
+            camera1.SetActive(true);
+        }
+
+        if (other.gameObject.tag == "Camera2")
+        {
+            camera2.SetActive(true);
+        }
+    }
+    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Camera1")
+        {
+            camera1.SetActive(false);
+        }
+
+        if (other.gameObject.tag == "Camera2")
+        {
+            camera2.SetActive(false);
+        }
+    }
 
     private void OnControllerColliderHit(ControllerColliderHit collision) // Check la collision, plus adapté pour le characterController
     {
@@ -40,7 +68,7 @@ public class PlayerCollision : MonoBehaviour
 
     IEnumerator ResetInstantiate()
     {
-        yield return new WaitForSeconds(0.8);
+        yield return new WaitForSeconds(0.8f);
         canInstantiate = true;
     }
 
