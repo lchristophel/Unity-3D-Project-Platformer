@@ -9,11 +9,13 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        // Décalage égal la position de la cible moins la position du porteur du script
         offset = target.position - transform.position;
     }
 
     void Update()
     {
+        // Position de la caméra égale la position de la cible moins le décalage
         transform.position = target.position - offset;
     }
 }

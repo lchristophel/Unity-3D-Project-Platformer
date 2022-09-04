@@ -15,9 +15,10 @@ public class PlayerCollision : MonoBehaviour
     public AudioClip hitSound;
     public AudioClip collectSound;
     public AudioClip hurtSound;
+    public SkinnedMeshRenderer renderer;
     private AudioSource audioSource;
     private bool canInstantiate = true;
-    private bool canHurtSound = true;
+    private bool isInvincible = false;
 
     private void Start()
     {
@@ -26,8 +27,10 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Si le personnage entre dans la zone trigger "Camera1"
         if (other.gameObject.tag == "Camera1")
         {
+            // La caméra1 s'active
             camera1.SetActive(true);
         }
 
@@ -106,11 +109,16 @@ public class PlayerCollision : MonoBehaviour
             StartCoroutine("ResetInstantiate");
         }
         // Si le tag de la collision est Hurt
-        if (collision.gameObject.tag == "Hurt" && canHurtSound)
+        if (collision.gameObject.tag == "Hurt" && !isInvincible)
         {
+            isInvincible = true;
+            // iTween.PunchScale(gameObject, new Vector3(50,50,50), 0.6f);
+            // Effet de recul du personnage lors de la collision
             iTween.PunchPosition(gameObject, Vector3.back * 5, 0.5f);
+            // Joue le son hurtSound
             audioSource.PlayOneShot(hurtSound);
-            StartCoroutine("ResetHurtSound");
+            // Coroutine qui fait patienter le joueur avant le prochain son de collision
+            StartCoroutine("ResetInvincible");
         }
     }
 
@@ -120,10 +128,16 @@ public class PlayerCollision : MonoBehaviour
         canInstantiate = true;
     }
 
-        IEnumerator ResetHurtSound()
+    IEnumerator ResetInvincible()
     {
-        yield return new WaitForSeconds(0.8f);
-        canHurtSound = true;
+        for (int i = 0; i < 10; i++)
+        {
+            yield return new WaitForSeconds(0.2f);
+            renderer.enabled = !renderer.enabled;
+        }
+        yield return new WaitForSeconds(0.2f);
+        renderer.enabled = true;
+        isInvincible = false;
     }
 
     // private void OnCollisionEnter(Collision collision){}
