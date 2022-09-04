@@ -13,6 +13,14 @@ public class PlayerCollision : MonoBehaviour
     public GameObject camera3;
     public GameObject camera4;
     public GameObject camera5;
+    public AudioClip hitSound;
+    public AudioClip collectSound;
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -75,6 +83,7 @@ public class PlayerCollision : MonoBehaviour
         // Si la collision à le tag Coin
         if (collision.gameObject.tag == "Coin")
         {
+            audioSource.PlayOneShot(collectSound);
             GameObject go = Instantiate(pickupEffect, collision.transform.position, Quaternion.identity); 
             Destroy(go, 0.5f);
             // Détruire le gameObject de la collision, donc le coin
@@ -86,6 +95,8 @@ public class PlayerCollision : MonoBehaviour
         if (collision.gameObject.tag == "Mob" && canInstantiate)
         {
             canInstantiate = false;
+            audioSource.PlayOneShot(hitSound);
+            iTween.PunchScale(collision.gameObject.transform.parent.gameObject, new Vector3(50,50,50), 0.6f);
             GameObject go = Instantiate(mobEffect, collision.transform.position, Quaternion.identity);
             Destroy(go, 0.6f);
             // Détruire le gameObject de la collision, donc le mob après 0.2 seconde
