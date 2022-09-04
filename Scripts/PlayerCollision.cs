@@ -10,6 +10,9 @@ public class PlayerCollision : MonoBehaviour
     private bool canInstantiate = true;
     public GameObject camera1;
     public GameObject camera2;
+    public GameObject camera3;
+    public GameObject camera4;
+    public GameObject camera5;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,6 +24,21 @@ public class PlayerCollision : MonoBehaviour
         if (other.gameObject.tag == "Camera2")
         {
             camera2.SetActive(true);
+        }
+
+        if (other.gameObject.tag == "Camera3")
+        {
+            camera3.SetActive(true);
+        }
+
+        if (other.gameObject.tag == "Camera3")
+        {
+            camera3.SetActive(true);
+        }
+
+        if (other.gameObject.tag == "Camera3")
+        {
+            camera3.SetActive(true);
         }
     }
     
@@ -34,6 +52,21 @@ public class PlayerCollision : MonoBehaviour
         if (other.gameObject.tag == "Camera2")
         {
             camera2.SetActive(false);
+        }
+
+        if (other.gameObject.tag == "Camera3")
+        {
+            camera3.SetActive(true);
+        }
+
+        if (other.gameObject.tag == "Camera4")
+        {
+            camera4.SetActive(true);
+        }
+
+        if (other.gameObject.tag == "Camera5")
+        {
+            camera5.SetActive(true);
         }
     }
 
