@@ -7,7 +7,6 @@ public class PlayerCollision : MonoBehaviour
     public int nbCoins = 0;
     public GameObject pickupEffect;
     public GameObject mobEffect;
-    private bool canInstantiate = true;
     public GameObject camera1;
     public GameObject camera2;
     public GameObject camera3;
@@ -15,7 +14,10 @@ public class PlayerCollision : MonoBehaviour
     public GameObject camera5;
     public AudioClip hitSound;
     public AudioClip collectSound;
+    public AudioClip hurtSound;
     private AudioSource audioSource;
+    private bool canInstantiate = true;
+    private bool canHurtSound = true;
 
     private void Start()
     {
@@ -104,9 +106,11 @@ public class PlayerCollision : MonoBehaviour
             StartCoroutine("ResetInstantiate");
         }
         // Si le tag de la collision est Hurt
-        if (collision.gameObject.tag == "Hurt")
+        if (collision.gameObject.tag == "Hurt" && canHurtSound)
         {
-            Debug.Log("Aie !");
+            iTween.PunchPosition(gameObject, Vector3.back * 5, 0.5f);
+            audioSource.PlayOneShot(hurtSound);
+            StartCoroutine("ResetHurtSound");
         }
     }
 
@@ -114,6 +118,12 @@ public class PlayerCollision : MonoBehaviour
     {
         yield return new WaitForSeconds(0.8f);
         canInstantiate = true;
+    }
+
+        IEnumerator ResetHurtSound()
+    {
+        yield return new WaitForSeconds(0.8f);
+        canHurtSound = true;
     }
 
     // private void OnCollisionEnter(Collision collision){}
