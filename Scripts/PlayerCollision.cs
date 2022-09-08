@@ -93,8 +93,8 @@ public class PlayerCollision : MonoBehaviour
             Destroy(go, 0.5f);
             // Détruire le gameObject de la collision, donc le coin
             Destroy(collision.gameObject);
-            // Incrémenter nbCoins
-            nbCoins++;
+            // Incrémenter nbCoins grâce à la fonction GetCoins() de la classe PlayerInformations du script PlayerInformations
+            PlayerInformations.playerInfos.GetCoin();
         }
         // Si la collision à le tag Mob
         if (collision.gameObject.tag == "Mob" && canInstantiate)
@@ -111,6 +111,8 @@ public class PlayerCollision : MonoBehaviour
         // Si le tag de la collision est Hurt
         if (collision.gameObject.tag == "Hurt" && !isInvincible)
         {
+            PlayerInformations.playerInfos.SetHealth(-1);
+            Debug.Log(PlayerInformations.playerInfos.playerHealth);
             isInvincible = true;
             // iTween.PunchScale(gameObject, new Vector3(50,50,50), 0.6f);
             // Effet de recul du personnage lors de la collision
