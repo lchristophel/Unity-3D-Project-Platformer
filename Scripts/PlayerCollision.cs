@@ -112,7 +112,6 @@ public class PlayerCollision : MonoBehaviour
         if (collision.gameObject.tag == "Hurt" && !isInvincible)
         {
             PlayerInformations.playerInfos.SetHealth(-1);
-            Debug.Log(PlayerInformations.playerInfos.playerHealth);
             isInvincible = true;
             // iTween.PunchScale(gameObject, new Vector3(50,50,50), 0.6f);
             // Effet de recul du personnage lors de la collision
