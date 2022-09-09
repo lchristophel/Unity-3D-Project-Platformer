@@ -27,6 +27,16 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Si le nom du trigger est finalScore
+        if (other.gameObject.name == "End")
+        {
+            Debug.Log("Final Score OK");
+        }
+        else
+        {
+            Debug.Log("Final Score X");
+        }
+
         // Si le personnage entre dans la zone trigger "Camera1"
         if (other.gameObject.tag == "Camera1")
         {
@@ -69,17 +79,17 @@ public class PlayerCollision : MonoBehaviour
 
         if (other.gameObject.tag == "Camera3")
         {
-            camera3.SetActive(true);
+            camera3.SetActive(false);
         }
 
         if (other.gameObject.tag == "Camera4")
         {
-            camera4.SetActive(true);
+            camera4.SetActive(false);
         }
 
         if (other.gameObject.tag == "Camera5")
         {
-            camera5.SetActive(true);
+            camera5.SetActive(false);
         }
     }
 
@@ -96,6 +106,7 @@ public class PlayerCollision : MonoBehaviour
             // Incrémenter nbCoins grâce à la fonction GetCoins() de la classe PlayerInformations du script PlayerInformations
             PlayerInformations.playerInfos.GetCoin();
         }
+
         // Si la collision à le tag Mob
         if (collision.gameObject.tag == "Mob" && canInstantiate)
         {
@@ -108,6 +119,7 @@ public class PlayerCollision : MonoBehaviour
             Destroy(collision.gameObject.transform.parent.gameObject, 0.2f);
             StartCoroutine("ResetInstantiate");
         }
+
         // Si le tag de la collision est Hurt
         if (collision.gameObject.tag == "Hurt" && !isInvincible)
         {

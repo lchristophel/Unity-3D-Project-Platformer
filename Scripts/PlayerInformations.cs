@@ -12,12 +12,13 @@ public class PlayerInformations : MonoBehaviour
     public int nbCoins = 0;
     public Image[] hearts;
     public TextMeshProUGUI coinNumber;
+    public TextMeshProUGUI scoreNumber;
 
     private void Awake()
     {
         playerInfos = this;
     }
-    
+
     public void SetHealth(int val)
     {
         playerHealth += val;
@@ -46,5 +47,12 @@ public class PlayerInformations : MonoBehaviour
     {
         nbCoins++;
         coinNumber.text = nbCoins.ToString();
+    }
+
+    public int GetScore()
+    {
+        int finalScore = (nbCoins * 5) + (playerHealth * 10);
+        scoreNumber.text = "Score : " + finalScore;
+        return finalScore;
     }
 }
