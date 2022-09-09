@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class PlayerInformations : MonoBehaviour
 {
@@ -10,12 +11,13 @@ public class PlayerInformations : MonoBehaviour
     public int playerHealth = 3;
     public int nbCoins = 0;
     public Image[] hearts;
+    public TextMeshProUGUI coinNumber;
 
     private void Awake()
     {
         playerInfos = this;
     }
-
+    
     public void SetHealth(int val)
     {
         playerHealth += val;
@@ -43,5 +45,6 @@ public class PlayerInformations : MonoBehaviour
     public void GetCoin()
     {
         nbCoins++;
+        coinNumber.text = nbCoins.ToString();
     }
 }

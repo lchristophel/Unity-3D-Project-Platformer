@@ -7,16 +7,10 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed; // Variable de vitesse de mouvement
     public float jumpForce; // Variable de force de saut
     public float gravity; // Variable de taux de gravité
-    public static PlayerController playerController;
-    public CharacterController characterController; // Référence à ce component dans Unity
-    public Animator animator; // Référence à ce component dans Unity
-    public Vector3 moveDirection; // Les 3 axes, x, y, z
+    private CharacterController characterController; // Référence à ce component dans Unity
+    private Animator animator; // Référence à ce component dans Unity
+    private Vector3 moveDirection; // Les 3 axes, x, y, z
     private bool isWalking = false;
-
-    private void Awake()
-    {
-        playerController = this;
-    }
 
     private void Start() // Effective au lancement
     {
