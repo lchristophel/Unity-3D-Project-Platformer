@@ -3860,7 +3860,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score : 1000000'
+  m_text: 'Score : 0 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7851,6 +7851,7 @@ MonoBehaviour:
   hearts: []
   coinNumber: {fileID: 0}
   scoreNumber: {fileID: 0}
+  checkpointManager: {fileID: 0}
 --- !u!4 &721781053
 Transform:
   m_ObjectHideFlags: 0
@@ -13135,6 +13136,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2287223201522926096, guid: ad409e9b766db4c8a8b48c98625e6186, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2287223201522926096, guid: ad409e9b766db4c8a8b48c98625e6186, type: 3}
+      propertyPath: m_TagString
+      value: Checkpoint
+      objectReference: {fileID: 0}
     - target: {fileID: -2202892853515455343, guid: ad409e9b766db4c8a8b48c98625e6186, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -13146,6 +13155,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ad409e9b766db4c8a8b48c98625e6186, type: 3}
       propertyPath: m_Name
       value: checkpoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ad409e9b766db4c8a8b48c98625e6186, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad409e9b766db4c8a8b48c98625e6186, type: 3}
@@ -17372,7 +17385,7 @@ MonoBehaviour:
   camera3: {fileID: 1154225824}
   camera4: {fileID: 102419664}
   camera5: {fileID: 933647818}
-  hitSound: {fileID: 8300000, guid: 5bb1a68bef5ad42c0afd58cc4b24d59f, type: 3}
+  hitSound: {fileID: 8300000, guid: ce381fc957c1145739d811233c465266, type: 3}
   collectSound: {fileID: 8300000, guid: 5a64d646cd8ee463882355b91e1489f6, type: 3}
   hurtSound: {fileID: 8300000, guid: 06f78dd95d76649bb9a8086fec76745b, type: 3}
   renderer: {fileID: 49980526}
@@ -17497,6 +17510,7 @@ MonoBehaviour:
   - {fileID: 1882890172}
   coinNumber: {fileID: 948872842}
   scoreNumber: {fileID: 370737893}
+  checkpointManager: {fileID: 1837489704}
 --- !u!65 &1837489703
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17522,6 +17536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af7456e7a1a84672bfc6940a810f38b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastPoint: {x: 0, y: 0, z: 0}
 --- !u!4 &1848580666 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7277729165285338487, guid: 6fb804371e1b44998896bbbc00b2a0a0, type: 3}
@@ -18182,7 +18197,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1954135647}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edc9e573c0b4a44c8acdd0ce46e8c8a4, type: 3}
   m_Name: 

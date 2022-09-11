@@ -13,6 +13,7 @@ public class PlayerInformations : MonoBehaviour
     public Image[] hearts;
     public TextMeshProUGUI coinNumber;
     public TextMeshProUGUI scoreNumber;
+    public CheckpointManager checkpointManager;
 
     private void Awake()
     {
@@ -25,8 +26,11 @@ public class PlayerInformations : MonoBehaviour
         if (playerHealth > 3)
             playerHealth = 3;
 
-        if (playerHealth < 0)
+        if (playerHealth <= 0)
+        {
             playerHealth = 0;
+            checkpointManager.Respawn();
+        }
 
         SetHealthBar();
     }

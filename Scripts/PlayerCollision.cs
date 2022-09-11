@@ -30,11 +30,7 @@ public class PlayerCollision : MonoBehaviour
         // Si le nom du trigger est finalScore
         if (other.gameObject.name == "End")
         {
-            Debug.Log("Final Score OK");
-        }
-        else
-        {
-            Debug.Log("Final Score X");
+            Debug.Log(PlayerInformations.playerInfos.GetScore());
         }
 
         // Si le personnage entre dans la zone trigger "Camera1"
@@ -127,7 +123,7 @@ public class PlayerCollision : MonoBehaviour
             isInvincible = true;
             // iTween.PunchScale(gameObject, new Vector3(50,50,50), 0.6f);
             // Effet de recul du personnage lors de la collision
-            iTween.PunchPosition(gameObject, Vector3.back * 5, 0.5f);
+            iTween.PunchPosition(gameObject, Vector3.back * 2, 0.5f);
             // Joue le son hurtSound
             audioSource.PlayOneShot(hurtSound);
             // Coroutine qui fait patienter le joueur avant le prochain son de collision
