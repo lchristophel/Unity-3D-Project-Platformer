@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    public int nbCoins = 0;
     public GameObject pickupEffect;
     public GameObject mobEffect;
     public GameObject camera1;
@@ -15,6 +15,7 @@ public class PlayerCollision : MonoBehaviour
     public AudioClip hitSound;
     public AudioClip collectSound;
     public AudioClip hurtSound;
+    public CheckpointManager checkpointManager;
     public SkinnedMeshRenderer renderer;
     private AudioSource audioSource;
     private bool canInstantiate = true;
@@ -27,6 +28,12 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "Void")
+        {
+            audioSource.PlayOneShot(hurtSound);
+            StartCoroutine("TimeForHurtSound");
+        }
+
         // Si le nom du trigger est finalScore
         if (other.gameObject.name == "End")
         {
@@ -90,7 +97,7 @@ public class PlayerCollision : MonoBehaviour
     }
 
     private void OnControllerColliderHit(ControllerColliderHit collision) // Check la collision, plus adapté pour le characterController
-    {
+    {        
         // Si la collision à le tag Coin
         if (collision.gameObject.tag == "Coin")
         {
@@ -131,6 +138,12 @@ public class PlayerCollision : MonoBehaviour
         }
     }
 
+    IEnumerator TimeForHurtSound()
+    {
+        yield return new WaitForSeconds(0.3f);
+        SceneManager.LoadScene(0);
+    }
+
     IEnumerator ResetInstantiate()
     {
         yield return new WaitForSeconds(0.8f);
@@ -148,6 +161,4 @@ public class PlayerCollision : MonoBehaviour
         renderer.enabled = true;
         isInvincible = false;
     }
-
-    // private void OnCollisionEnter(Collision collision){}
 }

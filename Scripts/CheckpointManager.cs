@@ -5,18 +5,22 @@ using UnityEngine;
 public class CheckpointManager : MonoBehaviour
 {
     public Vector3 lastPoint;
-    // Start is called before the first frame update
-    void Start()
+    public AudioClip checkpointSound;
+    private AudioSource audioSource;
+
+    private void Start()
     {
         lastPoint = transform.position;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Checkpoint")
+        if (other.gameObject.tag == "Checkpoint")
         {
             lastPoint = transform.position;
             other.gameObject.GetComponent<CoinAnim>().enabled = true;
+            audioSource.PlayOneShot(checkpointSound);
         }
     }
 

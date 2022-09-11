@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>(); // Attribution du CharacterController de l'élément porteur du script
     }
 
-    void Update() // Effective à chaque frame
+    private void Update() // Effective à chaque frame
     {
         // moveDirection = la valeur de l'input sur l'axe horizontal et vertical * la vitesse de mouvement 
         moveDirection = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, moveDirection.y, Input.GetAxis("Vertical") * moveSpeed);
