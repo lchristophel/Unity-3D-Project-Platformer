@@ -14,4 +14,9 @@ public class Menu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void OpenSite(string url)
+    {
+        Application.OpenURL(url);
+    }
 }
