@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class NailAI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Range(0.5f, 50)]
+    public float detectDistance;
+
+    private void OnDrawGizmosSelected()
     {
-        
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, detectDistance);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
