@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed; // Variable de vitesse de mouvement
     public float jumpForce; // Variable de force de saut
     public float gravity; // Variable de taux de gravité
+    public AudioClip jumpSound;
+    private AudioSource audioSource;
     private CharacterController characterController; // Référence à ce component dans Unity
     private Animator animator; // Référence à ce component dans Unity
     private Vector3 moveDirection; // Les 3 axes, x, y, z
@@ -14,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start() // Effective au lancement
     {
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>(); // Attribution de l'animator de l'élément porteur du script
         characterController = GetComponent<CharacterController>(); // Attribution du CharacterController de l'élément porteur du script
     }
@@ -25,11 +28,13 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetButtonDown("Jump") && characterController.isGrounded) // Check de la touche saut et au sol
         {
+            audioSource.PlayOneShot(jumpSound);
             moveDirection.y = jumpForce; // Attribution de la valeur du jump au mouvement vers le haut
         }
         
         if (moveDirection.x != 0 || moveDirection.z != 0) // Si le personnage n'est pas statique
         {
+            
             isWalking = true;
             // La rotation actuelle du personnage sera égale à la transition entre la rotation actuelle et la prochaine suivant la direction donnée ainsi que l'intensité sur les inputs
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(moveDirection.x, 0, moveDirection.z)), 0.15f);
