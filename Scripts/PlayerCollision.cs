@@ -7,6 +7,7 @@ public class PlayerCollision : MonoBehaviour
 {
     public GameObject pickupEffect;
     public GameObject mobEffect;
+    public GameObject loot;
     public GameObject camera1;
     public GameObject camera2;
     public GameObject camera3;
@@ -117,6 +118,7 @@ public class PlayerCollision : MonoBehaviour
             audioSource.PlayOneShot(hitSound);
             iTween.PunchScale(collision.gameObject.transform.parent.gameObject, new Vector3(50,50,50), 0.6f);
             GameObject go = Instantiate(mobEffect, collision.transform.position, Quaternion.identity);
+            Instantiate(loot, collision.transform.position + Vector3.forward, Quaternion.identity * Quaternion.Euler(-90,0,0));
             Destroy(go, 0.6f);
             // Détruire le gameObject de la collision, donc le mob après 0.2 seconde
             Destroy(collision.gameObject.transform.parent.gameObject, 0.2f);
