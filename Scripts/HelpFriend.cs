@@ -45,6 +45,7 @@ public class HelpFriend : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E) && canOpen)
         {
+            Pause.friendToHelp--;
             iTween.ShakeScale(cage, new Vector3(145,145,145), 1f);
             audioSource.PlayOneShot(friendSound);
             Destroy(cage, 1);
