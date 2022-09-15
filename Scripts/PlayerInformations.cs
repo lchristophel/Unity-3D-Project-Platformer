@@ -56,7 +56,7 @@ public class PlayerInformations : MonoBehaviour
     public int GetScore()
     {
         int finalScore = (nbCoins * 5) + (playerHealth * 10);
-        scoreNumber.text = "Score : " + finalScore;
+        scoreNumber.text = "Score :" + finalScore;
         return finalScore;
     }
 }

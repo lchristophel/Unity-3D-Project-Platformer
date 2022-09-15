@@ -16,6 +16,7 @@ public class PlayerCollision : MonoBehaviour
     public AudioClip hitSound;
     public AudioClip collectSound;
     public AudioClip hurtSound;
+    public AudioClip endSound;
     public CheckpointManager checkpointManager;
     public SkinnedMeshRenderer renderer;
     private AudioSource audioSource;
@@ -35,9 +36,10 @@ public class PlayerCollision : MonoBehaviour
             StartCoroutine("TimeForHurtSound");
         }
 
-        // Si le nom du trigger est finalScore
+        // Si le nom du trigger est End
         if (other.gameObject.name == "End")
         {
+            audioSource.PlayOneShot(endSound);
             Debug.Log(PlayerInformations.playerInfos.GetScore());
         }
 
@@ -103,7 +105,7 @@ public class PlayerCollision : MonoBehaviour
         if (collision.gameObject.tag == "Coin")
         {
             audioSource.PlayOneShot(collectSound);
-            GameObject go = Instantiate(pickupEffect, collision.transform.position, Quaternion.identity); 
+            GameObject go = Instantiate(pickupEffect, collision.transform.position, Quaternion.identity);
             Destroy(go, 0.5f);
             // Détruire le gameObject de la collision, donc le coin
             Destroy(collision.gameObject);
