@@ -37,6 +37,7 @@ public class HelpFriend : MonoBehaviour
         {
             cage = null;
             canOpen = false;
+            infoText.text = "";
         }
     }
 
