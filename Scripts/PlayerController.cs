@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce; // Variable de force de saut
     public float gravity; // Variable de taux de gravité
     public AudioClip jumpSound;
+    public int camActive = 0;
     private AudioSource audioSource;
     private CharacterController characterController; // Référence à ce component dans Unity
     private Animator animator; // Référence à ce component dans Unity
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>(); // Attribution du CharacterController de l'élément porteur du script
     }
 
-    private void Update() // Effective à chaque frame
+    private void FixedUpdate() // Effective à chaque frame
     {
         // moveDirection = la valeur de l'input sur l'axe horizontal et vertical * la vitesse de mouvement 
         moveDirection = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, moveDirection.y, Input.GetAxis("Vertical") * moveSpeed);

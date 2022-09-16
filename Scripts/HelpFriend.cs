@@ -37,7 +37,7 @@ public class HelpFriend : MonoBehaviour
         {
             cage = null;
             canOpen = false;
-            infoText.text = "";
+            infoText.text = null;
         }
     }
 
@@ -49,7 +49,7 @@ public class HelpFriend : MonoBehaviour
             iTween.ShakeScale(cage, new Vector3(145,145,145), 1f);
             audioSource.PlayOneShot(friendSound);
             Destroy(cage, 1);
-            infoText.text = "";
+            infoText.text = null;
             iTween.ShakeScale(chicken, new Vector3(2,2,2), 5);
             iTween.ShakeScale(chicken2, new Vector3(2,2,2), 5);
             iTween.ShakeScale(chicken3, new Vector3(2,2,2), 5);
