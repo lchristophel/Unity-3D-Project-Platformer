@@ -41,6 +41,7 @@ public class PlayerCollision : MonoBehaviour
         {
             audioSource.PlayOneShot(endSound);
             Debug.Log(PlayerInformations.playerInfos.GetScore());
+            Time.timeScale = 0f;
         }
 
         // Si le personnage entre dans la zone trigger "Camera1"
@@ -104,6 +105,7 @@ public class PlayerCollision : MonoBehaviour
         // Si la collision à le tag Coin
         if (collision.gameObject.tag == "Coin")
         {
+            Pause.coinsTaken--;
             audioSource.PlayOneShot(collectSound);
             GameObject go = Instantiate(pickupEffect, collision.transform.position, Quaternion.identity);
             Destroy(go, 0.5f);
@@ -116,6 +118,7 @@ public class PlayerCollision : MonoBehaviour
         // Si la collision à le tag Mob
         if (collision.gameObject.tag == "Mob" && canInstantiate)
         {
+            Pause.mobsToKill--;
             canInstantiate = false;
             audioSource.PlayOneShot(hitSound);
             iTween.PunchScale(collision.gameObject.transform.parent.gameObject, new Vector3(50,50,50), 0.6f);
